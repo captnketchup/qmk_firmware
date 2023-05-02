@@ -6,7 +6,7 @@
 #define NUMBER_OF_ENCODERS 1
 #define ENCODERS_PAD_A { GP21 }
 #define ENCODERS_PAD_B { GP22 }
-#define ENCODER_RESOLUTION 1
+#define ENCODER_RESOLUTION 4
 /*
  * Feature disable options
  *  These options are also useful to firmware size reduction.
