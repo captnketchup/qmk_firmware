@@ -3,7 +3,8 @@
 
 #pragma once
 
-#define OLED_TIMEOUT            10000
+#define OLED_TIMEOUT            3000
+#define OLED_BRIGHTNESS         10
 
 #define OLED_DISPLAY_CUSTOM
 #define OLED_DISPLAY_WIDTH      64
