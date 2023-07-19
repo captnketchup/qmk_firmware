@@ -248,13 +248,13 @@ void oled_clear(void) {
 static void calc_bounds(uint8_t update_start, uint8_t *cmd_array) {
     // Calculate commands to set memory addressing bounds.
     uint8_t start_page   = OLED_BLOCK_SIZE * update_start / OLED_DISPLAY_WIDTH;
-    uint8_t start_column = OLED_BLOCK_SIZE * update_start % OLED_DISPLAY_WIDTH;
+    uint8_t start_column = OLED_BLOCK_SIZE * update_start % OLED_DISPLAY_WIDTH + OLED_COLUMN_OFFSET;
 #if (OLED_IC == OLED_IC_SH1106)
     // Commands for Page Addressing Mode. Sets starting page and column; has no end bound.
     // Column value must be split into high and low nybble and sent as two commands.
     cmd_array[0] = PAM_PAGE_ADDR | start_page;
-    cmd_array[1] = PAM_SETCOLUMN_LSB | ((OLED_COLUMN_OFFSET + start_column) & 0x0f);
-    cmd_array[2] = PAM_SETCOLUMN_MSB | ((OLED_COLUMN_OFFSET + start_column) >> 4 & 0x0f);
+    cmd_array[1] = PAM_SETCOLUMN_LSB | (start_column & 0x0f);
+    cmd_array[2] = PAM_SETCOLUMN_MSB | (OLED_COLUMN_OFFSET >> 4 & 0x0f);
     cmd_array[3] = NOP;
     cmd_array[4] = NOP;
     cmd_array[5] = NOP;
